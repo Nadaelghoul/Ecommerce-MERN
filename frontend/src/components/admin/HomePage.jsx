@@ -108,7 +108,7 @@ function HomePage() {
                 <form onSubmit={submitHandler}    className="space-y-4">
                   <Input name="title" placeholder="Product Title" value={formData.title} onChange={handleChange} required />
                   <Input name="about" placeholder="About the product" value={formData.about} onChange={handleChange} required />
-                  <select name="category" placeholder="category" value={formData.category} onChange={handleChange} required >
+                  <select name="category" placeholder="category" value={formData.category} onChange={handleChange} required  className="dark:bg-black">
                     <option value={""}>Select Category</option>
                     {categories.map((e)=>{
                         return (
