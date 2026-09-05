@@ -1,5 +1,5 @@
 import Loading from "@/components/Loading";
-import ProductCard from "@/components/productCard";
+import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
