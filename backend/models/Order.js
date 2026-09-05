@@ -20,7 +20,6 @@ const orderSchema = new mongoose.Schema({
 
     paymentInfo:{
        type: String,
-       unique: true,
     },
 
     user:{
