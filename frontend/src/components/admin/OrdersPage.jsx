@@ -92,7 +92,7 @@ function OrdersPage() {
                             <TableCell> {moment(order.createdAt).format("DD MM YYYY")} </TableCell>
                             <TableCell>
                                 <select value={order.status} onChange={(e)=> updateOrderStatus(order._id, e.target.value)}
-                                 className="w-37.5 px-3 py-2 border rounded-md">
+                                 className="w-37.5 px-3 py-2 border rounded-md dark:bg-black">
                                     <option value="pending">Pending</option>
                                     <option value="Shipped">Shipped</option>
                                     <option value="Delivered">Delivered</option>
