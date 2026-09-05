@@ -11,16 +11,19 @@ import { server, categories } from "@/main";
 import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
-import { Edit, Loader, X } from "lucide-react";
+import { Edit, Loader, X , Trash2} from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
 
 function ProductPage() {
-  const { fetchProduct, product, relatedProduct, loading } = ProductData();
+  const { fetchProduct, product, relatedProduct, loading, fetchProducts, deleteProduct } = ProductData();
   const { id } = useParams();
 
   const { isAuth, user } = UserData();
   const { addToCart } = CartData();
+
+  const navigate = useNavigate();
 
   // Product
 
@@ -134,6 +137,31 @@ function ProductPage() {
     }
   };
 
+  //delete handler
+
+  const handleDelete = async (id) => {
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this product?"
+  );
+
+  if (!confirmed) return;
+
+  try {
+    await deleteProduct(id);
+
+    toast.success("Product deleted successfully");
+
+    fetchProducts();
+    navigate("/admin/dashboard");
+  } catch (error) {
+    console.log(error);
+
+    toast.error(
+      error.response?.data?.message || "Failed to delete product"
+    );
+  }
+};
+
   return (
     <div>
       {loading ? (
@@ -223,17 +251,20 @@ function ProductPage() {
                       )}
                     </div>
                     
-                       {/* ADMIN - EDIT BUTTON */}
+                       {/* ADMIN - EDIT and Delete BUTTON */}
                     
                     {user && user.role === "admin" && (
-                      <Button
-                        onClick={updateHandler}
-                        variant="outline"
-                        className="shrink-0"
-                      >
-                        {show ? <X size={18} /> : <Edit size={18} />}
-                      </Button>
-                    )}
+                     <div className="flex gap-2 shrink-0">
+                      {/* Edit Button */}
+                      <Button onClick={updateHandler} variant="outline">
+                      {show ? <X size={18} /> : <Edit size={18} />}
+                       </Button>
+                       {/* Delete Button */}
+                      <Button onClick={() => handleDelete(product._id)} variant="destructive">
+                        <Trash2 size={18} />
+                     </Button>
+                     </div>
+                     )}
                   </div>
 
                   {show && (

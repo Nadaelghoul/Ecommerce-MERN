@@ -1,6 +1,7 @@
 import axios from "axios";
 import { server } from "@/main";
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import Cookies from "js-cookie"
 
 const ProductContext = createContext()
 
@@ -52,10 +53,28 @@ export const ProductProvider = ({children}) => {
   }
 }, []);
 
+const deleteProduct = async (id) => {
+  try {
+    const { data } = await axios.delete(
+      `${server}/api/product/${id}`,
+      {
+        headers: {
+          token: Cookies.get("token"),
+        },
+      }
+    );
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
     return (
      <ProductContext.Provider value={{loading, products, newProd, 
       search, setSearch, categories, category, setCategory, totalPages,
-      price, setPrice, page, setPage, fetchProduct, fetchProducts ,product, relatedProduct }}>
+      price, setPrice, page, setPage, fetchProduct, fetchProducts ,product, relatedProduct, deleteProduct }}>
         {children}
     </ProductContext.Provider>
     )
