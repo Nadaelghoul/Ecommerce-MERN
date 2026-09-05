@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 function Home() {
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const {loading, products, newProd} = ProductData();
   return (
     <div>
