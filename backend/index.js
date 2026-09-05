@@ -34,7 +34,11 @@ app.use("/api", cartRoutes);
 app.use("/api", addressRoutes);
 app.use("/api", orderRoutes);
 
-app.listen(PORT, () => {
+/* app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   connectDB();
-});
+}); */
+
+connectDB();
+
+export default app;
