@@ -7,7 +7,7 @@ import { UserProvider } from "./context/UserContext";
 import { ProductProvider } from "./context/ProductContext";
 import { CartProvider } from "./context/CartContext";
 
-export const server = import.meta.env.SERVER_URL;
+export const server = import.meta.env.VITE_SERVER_URL;
 
 export const categories = [
   "smartphone",
