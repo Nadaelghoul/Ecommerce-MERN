@@ -53,10 +53,11 @@ function Payment() {
              setLoading(false)
              toast.success(data.message)
              fetchCart()
-             navigate("/order")
+             navigate("/orders")
             } catch(error) {
                 setLoading(false)
                 toast.error(error.response.data.message)
+                navigate("/cart")
             }
         };
         if(method === "online"){
