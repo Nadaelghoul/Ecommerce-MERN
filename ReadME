@@ -1,0 +1,94 @@
+Ecommerce MERN
+
+backend
+
+1.How to Run the Backend
+-----------------------------------
+1.cd backend
+2.npm install
+3.Create a .env file inside the backend folder and add the required environment variables:
+-PORT=5000
+-MONGO_URI=your_mongodb_connection_string
+-JWT_SECRET=your_jwt_secret_key
+-Gmail=your_gmail_address 
+-Password=your_gmail_app_password
+-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name 
+-CLOUDINARY_API_KEY=your_cloudinary_api_key 
+-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+-Stripe_Publisable_Key
+-Stripe_Secret_Key
+4.npm run dev
+
+
+2.Backend Development Steps
+-----------------------------------
+1. User Authentication
+2. OTP Email Verification  --Nodemailer,Gmail App Password
+3. Cloudinary Integration
+4. Multer File Upload --multer.memoryStorage() --Multiple images can be uploaded using .array("files", 10) --multer middleware
+5. Data URI Conversion  --DataUriParser is used to convert the file buffer into a Data URI before sending it to Cloudinary.
+6. Multiple Image Upload --through req.files (form-data)
+7. Product Creation
+8.get all products --by filter with query params (search with title , category , sorting with price or date) and pagination
+9. get product by id and get related products with the same category
+10.update product
+11.update product images
+12. cart(add to cart, remove cart , update cart(+,-), fetch cart total quantity and total price)
+13. address (add address and phone for user , get all addresses or single address , delete address)
+14.order model, controller and routes (neworder, sendOrderConfirmation on email,getAllOrders for user , getAllOrdersAdmin, get order by id, update status for order --pending,shipped,delivered , getstatus(total cod orders, total online orders, all products name and sold ))
+15.Stripe 1.(npm i Stripe) 2.Order controller ( new Stripe and newOrderOnline function and verifyPayment function)
+
+
+3.Technologies Used
+-------------------------
+Node.js
+Express.js
+MongoDB
+Mongoose
+JWT
+Nodemailer
+Cloudinary
+Multer
+DataURI
+Stripe
+
+
+frontend
+
+Technologies Used
+--------------------
+
+-vite -react
+-tailwindcss
+-shadcn ui
+
+run:- npm run dev
+
+steps
+--------
+1.app.jsx (react-router-dom)
+2.components:-
+-Navbar.jsx (dropdownmenu and modetoggle from shadcn ui)
+-dark/light mode(theme) -index.css(shadcn --theming) -themeprovider.jsx, modetoggle.jsx, using themeprovider in main.jsx (shadcn -docs -darkmode)
+-footer.jsx
+-Hero.jsx
+3.pages
+-login page
+-verify page
+-Home page
+-products page
+-ProductPage byid + if admin(update product details and product images)
+-Cart page
+-checkout page
+-payment page (create stripe session)
+-orderProcessing page (verify payment with stripe session-id)
+-Orders page
+-admindashboard page (with admin components -homepage -orderspage -infopage)
+4.context
+-usercontext (using localstorage for email for login then cookies after verify for token)
+-productContext
+-cartcontext
+
+
+
+
