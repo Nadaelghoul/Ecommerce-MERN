@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema({
         required: true,
     },
 
-    paymentInfo:{
+    paymentInfo:{   // for online payment, we will store the payment info here(stripe`s session id)
        type: String,
     },
 
